@@ -1,0 +1,51 @@
+
+<div *ngIf="scorerecordtype">
+    <h2><span jhiTranslate="gatewayScoreApp.scorerecordtype.detail.title">Scorerecordtype</span> {{scorerecordtype.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayScoreApp.scorerecordtype.name">Name</span></dt>
+        <dd>
+            <span>{{scorerecordtype.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scorerecordtype.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{scorerecordtype.nameshort}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scorerecordtype.description">Description</span></dt>
+        <dd>
+            <span>{{scorerecordtype.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scorerecordtype.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{scorerecordtype.lastmodifiedby}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scorerecordtype.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{scorerecordtype.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scorerecordtype.domain">Domain</span></dt>
+        <dd>
+            <span>{{scorerecordtype.domain}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scorerecordtype.scorestatus">Scorestatus</span></dt>
+        <dd>
+            <div *ngIf="scorerecordtype.scorestatus">
+                <a [routerLink]="['/scorestatus', scorerecordtype.scorestatus?.id]">{{scorerecordtype.scorestatus?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'scorerecordtype/'+ scorerecordtype.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

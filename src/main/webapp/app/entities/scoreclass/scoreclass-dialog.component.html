@@ -1,0 +1,119 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myScoreclassLabel" jhiTranslate="gatewayScoreApp.scoreclass.home.createOrEditLabel">Create or edit a Scoreclass</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!scoreclass.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="scoreclass.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.scoreclass.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="scoreclass.name" required maxlength="100" />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.scoreclass.nameshort" for="field_nameshort">Nameshort</label>
+            <input type="text" class="form-control" name="nameshort" id="field_nameshort"
+                [(ngModel)]="scoreclass.nameshort" required maxlength="25" />
+            <div [hidden]="!(editForm.controls.nameshort?.dirty && editForm.controls.nameshort?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nameshort?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nameshort?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 25 }">
+                   This field cannot be longer than 25 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.scoreclass.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="scoreclass.description" maxlength="255" />
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.scoreclass.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
+                [(ngModel)]="scoreclass.lastmodifiedby" required />
+            <div [hidden]="!(editForm.controls.lastmodifiedby?.dirty && editForm.controls.lastmodifiedby?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastmodifiedby?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.scoreclass.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+            <div class="d-flex">
+                <input id="field_lastmodifieddatetime" type="datetime-local" class="form-control" name="lastmodifieddatetime" [(ngModel)]="scoreclass.lastmodifieddatetime"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.lastmodifieddatetime?.dirty && editForm.controls.lastmodifieddatetime?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastmodifieddatetime?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.lastmodifieddatetime?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.scoreclass.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                [(ngModel)]="scoreclass.domain" required />
+            <div [hidden]="!(editForm.controls.domain?.dirty && editForm.controls.domain?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.domain?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="gatewayScoreApp.scoreclass.scorestatus" for="field_scorestatus">Scorestatus</label>
+            <select class="form-control" id="field_scorestatus" name="scorestatus" [(ngModel)]="scoreclass.scorestatus" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="scorestatusOption.id === scoreclass.scorestatus?.id ? scoreclass.scorestatus : scorestatusOption" *ngFor="let scorestatusOption of scorestatuses; trackBy: trackScorestatusById">{{scorestatusOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="gatewayScoreApp.scoreclass.scorerecordtype" for="field_scorerecordtype">Scorerecordtype</label>
+            <select class="form-control" id="field_scorerecordtype" name="scorerecordtype" [(ngModel)]="scoreclass.scorerecordtype" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="scorerecordtypeOption.id === scoreclass.scorerecordtype?.id ? scoreclass.scorerecordtype : scorerecordtypeOption" *ngFor="let scorerecordtypeOption of scorerecordtypes; trackBy: trackScorerecordtypeById">{{scorerecordtypeOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

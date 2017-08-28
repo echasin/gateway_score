@@ -1,0 +1,51 @@
+
+<div *ngIf="scoretype">
+    <h2><span jhiTranslate="gatewayScoreApp.scoretype.detail.title">Scoretype</span> {{scoretype.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayScoreApp.scoretype.name">Name</span></dt>
+        <dd>
+            <span>{{scoretype.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoretype.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{scoretype.nameshort}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoretype.description">Description</span></dt>
+        <dd>
+            <span>{{scoretype.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoretype.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{scoretype.lastmodifiedby}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoretype.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{scoretype.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoretype.domain">Domain</span></dt>
+        <dd>
+            <span>{{scoretype.domain}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoretype.scorecategory">Scorecategory</span></dt>
+        <dd>
+            <div *ngIf="scoretype.scorecategory">
+                <a [routerLink]="['/scorecategory', scoretype.scorecategory?.id]">{{scoretype.scorecategory?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'scoretype/'+ scoretype.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

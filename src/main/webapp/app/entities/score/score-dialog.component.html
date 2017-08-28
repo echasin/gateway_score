@@ -1,0 +1,115 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myScoreLabel" jhiTranslate="gatewayScoreApp.score.home.createOrEditLabel">Create or edit a Score</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!score.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="score.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.score.scorevalue" for="field_scorevalue">Scorevalue</label>
+            <input type="text" class="form-control" name="scorevalue" id="field_scorevalue"
+                [(ngModel)]="score.scorevalue" required />
+            <div [hidden]="!(editForm.controls.scorevalue?.dirty && editForm.controls.scorevalue?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.scorevalue?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.score.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                [(ngModel)]="score.comment"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.score.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
+                [(ngModel)]="score.lastmodifiedby" required />
+            <div [hidden]="!(editForm.controls.lastmodifiedby?.dirty && editForm.controls.lastmodifiedby?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastmodifiedby?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.score.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+            <div class="d-flex">
+                <input id="field_lastmodifieddatetime" type="datetime-local" class="form-control" name="lastmodifieddatetime" [(ngModel)]="score.lastmodifieddatetime"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.lastmodifieddatetime?.dirty && editForm.controls.lastmodifieddatetime?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastmodifieddatetime?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.lastmodifieddatetime?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayScoreApp.score.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                [(ngModel)]="score.domain" required />
+            <div [hidden]="!(editForm.controls.domain?.dirty && editForm.controls.domain?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.domain?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="gatewayScoreApp.score.scorestatus" for="field_scorestatus">Scorestatus</label>
+            <select class="form-control" id="field_scorestatus" name="scorestatus" [(ngModel)]="score.scorestatus" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="scorestatusOption.id === score.scorestatus?.id ? score.scorestatus : scorestatusOption" *ngFor="let scorestatusOption of scorestatuses; trackBy: trackScorestatusById">{{scorestatusOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="gatewayScoreApp.score.scorerecordtype" for="field_scorerecordtype">Scorerecordtype</label>
+            <select class="form-control" id="field_scorerecordtype" name="scorerecordtype" [(ngModel)]="score.scorerecordtype" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="scorerecordtypeOption.id === score.scorerecordtype?.id ? score.scorerecordtype : scorerecordtypeOption" *ngFor="let scorerecordtypeOption of scorerecordtypes; trackBy: trackScorerecordtypeById">{{scorerecordtypeOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="gatewayScoreApp.score.scoreclass" for="field_scoreclass">Scoreclass</label>
+            <select class="form-control" id="field_scoreclass" name="scoreclass" [(ngModel)]="score.scoreclass" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="scoreclassOption.id === score.scoreclass?.id ? score.scoreclass : scoreclassOption" *ngFor="let scoreclassOption of scoreclasses; trackBy: trackScoreclassById">{{scoreclassOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="gatewayScoreApp.score.scorecategory" for="field_scorecategory">Scorecategory</label>
+            <select class="form-control" id="field_scorecategory" name="scorecategory" [(ngModel)]="score.scorecategory" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="scorecategoryOption.id === score.scorecategory?.id ? score.scorecategory : scorecategoryOption" *ngFor="let scorecategoryOption of scorecategories; trackBy: trackScorecategoryById">{{scorecategoryOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="gatewayScoreApp.score.scoretype" for="field_scoretype">Scoretype</label>
+            <select class="form-control" id="field_scoretype" name="scoretype" [(ngModel)]="score.scoretype" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="scoretypeOption.id === score.scoretype?.id ? score.scoretype : scoretypeOption" *ngFor="let scoretypeOption of scoretypes; trackBy: trackScoretypeById">{{scoretypeOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

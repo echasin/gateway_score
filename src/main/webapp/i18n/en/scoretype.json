@@ -1,0 +1,32 @@
+{
+    "gatewayScoreApp": {
+        "scoretype" : {
+            "home": {
+                "title": "Scoretypes",
+                "createLabel": "Create a new Scoretype",
+                "createOrEditLabel": "Create or edit a Scoretype",
+                "search": "Search for Scoretype"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Scoretype {{ id }}?"
+            },
+            "detail": {
+                "title": "Scoretype"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "scorecategory": "Scorecategory"
+        }
+    },
+    "scoreApp": {
+        "scoretype" : {
+            "created": "A new Scoretype is created with identifier {{ param }}",
+            "updated": "A Scoretype is updated with identifier {{ param }}",
+            "deleted": "A Scoretype is deleted with identifier {{ param }}"
+        }
+    }
+}

@@ -1,0 +1,99 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayScoreApp.scoreclass.home.title">Scoreclasses</span>
+        <button class="btn btn-primary float-right jh-create-entity create-scoreclass" [routerLink]="['/', { outlets: { popup: ['scoreclass-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="gatewayScoreApp.scoreclass.home.createLabel">
+            Create new Scoreclass
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'gatewayScoreApp.scoreclass.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="scoreclasses">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="gatewayScoreApp.scoreclass.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nameshort"><span jhiTranslate="gatewayScoreApp.scoreclass.nameshort">Nameshort</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="gatewayScoreApp.scoreclass.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastmodifiedby"><span jhiTranslate="gatewayScoreApp.scoreclass.lastmodifiedby">Lastmodifiedby</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastmodifieddatetime"><span jhiTranslate="gatewayScoreApp.scoreclass.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="domain"><span jhiTranslate="gatewayScoreApp.scoreclass.domain">Domain</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="scorestatus.name"><span jhiTranslate="gatewayScoreApp.scoreclass.scorestatus">Scorestatus</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="scorerecordtype.name"><span jhiTranslate="gatewayScoreApp.scoreclass.scorerecordtype">Scorerecordtype</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let scoreclass of scoreclasses ;trackBy: trackId">
+                <td><a [routerLink]="['../scoreclass', scoreclass.id ]">{{scoreclass.id}}</a></td>
+                <td>{{scoreclass.name}}</td>
+                <td>{{scoreclass.nameshort}}</td>
+                <td>{{scoreclass.description}}</td>
+                <td>{{scoreclass.lastmodifiedby}}</td>
+                <td>{{scoreclass.lastmodifieddatetime | date:'medium'}}</td>
+                <td>{{scoreclass.domain}}</td>
+                <td>
+                    <div *ngIf="scoreclass.scorestatus">
+                        <a [routerLink]="['../scorestatus', scoreclass.scorestatus?.id ]" >{{scoreclass.scorestatus?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="scoreclass.scorerecordtype">
+                        <a [routerLink]="['../scorerecordtype', scoreclass.scorerecordtype?.id ]" >{{scoreclass.scorerecordtype?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../scoreclass', scoreclass.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'scoreclass/'+ scoreclass.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'scoreclass/'+ scoreclass.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="scoreclasses && scoreclasses.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

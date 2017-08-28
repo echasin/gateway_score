@@ -1,0 +1,33 @@
+{
+    "gatewayScoreApp": {
+        "scoreclass" : {
+            "home": {
+                "title": "Scoreclasses",
+                "createLabel": "Create a new Scoreclass",
+                "createOrEditLabel": "Create or edit a Scoreclass",
+                "search": "Search for Scoreclass"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Scoreclass {{ id }}?"
+            },
+            "detail": {
+                "title": "Scoreclass"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "scorestatus": "Scorestatus",
+            "scorerecordtype": "Scorerecordtype"
+        }
+    },
+    "scoreApp": {
+        "scoreclass" : {
+            "created": "A new Scoreclass is created with identifier {{ param }}",
+            "updated": "A Scoreclass is updated with identifier {{ param }}",
+            "deleted": "A Scoreclass is deleted with identifier {{ param }}"
+        }
+    }
+}

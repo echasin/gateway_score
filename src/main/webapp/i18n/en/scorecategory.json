@@ -1,0 +1,33 @@
+{
+    "gatewayScoreApp": {
+        "scorecategory" : {
+            "home": {
+                "title": "Scorecategories",
+                "createLabel": "Create a new Scorecategory",
+                "createOrEditLabel": "Create or edit a Scorecategory",
+                "search": "Search for Scorecategory"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Scorecategory {{ id }}?"
+            },
+            "detail": {
+                "title": "Scorecategory"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "scorestatus": "Scorestatus",
+            "scoreclass": "Scoreclass"
+        }
+    },
+    "scoreApp": {
+        "scorecategory" : {
+            "created": "A new Scorecategory is created with identifier {{ param }}",
+            "updated": "A Scorecategory is updated with identifier {{ param }}",
+            "deleted": "A Scorecategory is deleted with identifier {{ param }}"
+        }
+    }
+}

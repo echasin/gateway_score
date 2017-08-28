@@ -1,0 +1,31 @@
+{
+    "gatewayScoreApp": {
+        "scorestatus" : {
+            "home": {
+                "title": "Scorestatuses",
+                "createLabel": "Create a new Scorestatus",
+                "createOrEditLabel": "Create or edit a Scorestatus",
+                "search": "Search for Scorestatus"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Scorestatus {{ id }}?"
+            },
+            "detail": {
+                "title": "Scorestatus"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain"
+        }
+    },
+    "scoreApp": {
+        "scorestatus" : {
+            "created": "A new Scorestatus is created with identifier {{ param }}",
+            "updated": "A Scorestatus is updated with identifier {{ param }}",
+            "deleted": "A Scorestatus is deleted with identifier {{ param }}"
+        }
+    }
+}

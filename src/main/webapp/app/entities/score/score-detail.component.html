@@ -1,0 +1,71 @@
+
+<div *ngIf="score">
+    <h2><span jhiTranslate="gatewayScoreApp.score.detail.title">Score</span> {{score.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayScoreApp.score.scorevalue">Scorevalue</span></dt>
+        <dd>
+            <span>{{score.scorevalue}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.comment">Comment</span></dt>
+        <dd>
+            <span>{{score.comment}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{score.lastmodifiedby}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{score.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.domain">Domain</span></dt>
+        <dd>
+            <span>{{score.domain}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.scorestatus">Scorestatus</span></dt>
+        <dd>
+            <div *ngIf="score.scorestatus">
+                <a [routerLink]="['/scorestatus', score.scorestatus?.id]">{{score.scorestatus?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.scorerecordtype">Scorerecordtype</span></dt>
+        <dd>
+            <div *ngIf="score.scorerecordtype">
+                <a [routerLink]="['/scorerecordtype', score.scorerecordtype?.id]">{{score.scorerecordtype?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.scoreclass">Scoreclass</span></dt>
+        <dd>
+            <div *ngIf="score.scoreclass">
+                <a [routerLink]="['/scoreclass', score.scoreclass?.id]">{{score.scoreclass?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.scorecategory">Scorecategory</span></dt>
+        <dd>
+            <div *ngIf="score.scorecategory">
+                <a [routerLink]="['/scorecategory', score.scorecategory?.id]">{{score.scorecategory?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.score.scoretype">Scoretype</span></dt>
+        <dd>
+            <div *ngIf="score.scoretype">
+                <a [routerLink]="['/scoretype', score.scoretype?.id]">{{score.scoretype?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'score/'+ score.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

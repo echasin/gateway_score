@@ -1,0 +1,57 @@
+
+<div *ngIf="scoreclass">
+    <h2><span jhiTranslate="gatewayScoreApp.scoreclass.detail.title">Scoreclass</span> {{scoreclass.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.name">Name</span></dt>
+        <dd>
+            <span>{{scoreclass.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{scoreclass.nameshort}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.description">Description</span></dt>
+        <dd>
+            <span>{{scoreclass.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{scoreclass.lastmodifiedby}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{scoreclass.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.domain">Domain</span></dt>
+        <dd>
+            <span>{{scoreclass.domain}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.scorestatus">Scorestatus</span></dt>
+        <dd>
+            <div *ngIf="scoreclass.scorestatus">
+                <a [routerLink]="['/scorestatus', scoreclass.scorestatus?.id]">{{scoreclass.scorestatus?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayScoreApp.scoreclass.scorerecordtype">Scorerecordtype</span></dt>
+        <dd>
+            <div *ngIf="scoreclass.scorerecordtype">
+                <a [routerLink]="['/scorerecordtype', scoreclass.scorerecordtype?.id]">{{scoreclass.scorerecordtype?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'scoreclass/'+ scoreclass.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
